@@ -47,7 +47,7 @@
         
         led_wifi: led-wifi {
             label = "led-wifi";
-            default-state = "off";
+            default-state = "on";
             gpios = <&gpio0 RK_PD6 GPIO_ACTIVE_HIGH>;
             pinctrl-names = "default";
             pinctrl-0 = <&led_wifi_enable_h>;
@@ -57,7 +57,7 @@
         
         led_eth: led-eth {
             label = "led-eth";
-            default-state = "off";
+            default-state = "on";
             gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
             pinctrl-names = "default";
             pinctrl-0 = <&led_eth_enable_h>;
@@ -566,5 +566,110 @@
 };
 
 &u2phy0_host {
+    status = "okay";
+};
+
+&vop {
+    assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
+    assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
+    status = "okay";
+};
+
+&vop_mmu {
+    status = "okay";
+};
+
+&hdmi {
+    status = "disabled";
+};
+
+&i2s0_8ch {
+    status = "okay";
+};
+
+&rng {
+    status = "okay";
+};
+
+&reserved_memory {
+    ramoops: ramoops@110000 {
+        compatible = "ramoops";
+        reg = <0x0 0x110000 0x0 0xf0000>;
+        record-size = <0x20000>;
+        console-size = <0x80000>;
+        ftrace-size = <0x00000>;
+        pmsg-size = <0x50000>;
+    };
+};
+
+&bus_npu {
+    bus-supply = <&vdd_logic>;
+    pvtm-supply = <&vdd_cpu>;
+    status = "okay";
+};
+
+&iep {
+    status = "okay";
+};
+
+&iep_mmu {
+    status = "okay";
+};
+
+&jpegd {
+    status = "okay";
+};
+
+&jpegd_mmu {
+    status = "okay";
+};
+
+&mpp_srv {
+    status = "okay";
+};
+
+&rk_rga {
+    status = "okay";
+};
+
+&rkvdec {
+    status = "okay";
+};
+
+&rkvdec_mmu {
+    status = "okay";
+};
+
+&rkvenc {
+    venc-supply = <&vdd_logic>;
+    status = "okay";
+};
+
+&rkvenc_mmu {
+    status = "okay";
+};
+
+&rknpu {
+    rknpu-supply = <&vdd_npu>;
+    status = "okay";
+};
+
+&rknpu_mmu {
+    status = "okay";
+};
+
+&vdpu {
+    status = "okay";
+};
+
+&vdpu_mmu {
+    status = "okay";
+};
+
+&vepu {
+    status = "okay";
+};
+
+&vepu_mmu {
     status = "okay";
 };
