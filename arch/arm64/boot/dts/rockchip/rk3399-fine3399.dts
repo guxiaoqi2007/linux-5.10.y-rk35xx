@@ -798,89 +798,89 @@
 	status = "okay";
 };
 
-&i2s0_8ch {
-	status = "okay";
-};
+//&i2s0_8ch {
+//	status = "okay";
+//};
 
 &rng {
 	status = "okay";
 };
 
-&reserved_memory {
-	ramoops: ramoops@110000 {
-		compatible = "ramoops";
-		reg = <0x0 0x110000 0x0 0xf0000>;
-		record-size = <0x20000>;
-		console-size = <0x80000>;
-		ftrace-size = <0x00000>;
-		pmsg-size = <0x50000>;
-	};
-};
+//&reserved_memory {
+//	ramoops: ramoops@110000 {
+//		compatible = "ramoops";
+//		reg = <0x0 0x110000 0x0 0xf0000>;
+//		record-size = <0x20000>;
+//		console-size = <0x80000>;
+//		ftrace-size = <0x00000>;
+//		pmsg-size = <0x50000>;
+//	};
+//};
 
-&bus_npu {
-	bus-supply = <&vdd_logic>;
-	pvtm-supply = <&vdd_cpu>;
-	status = "okay";
-};
+//&bus_npu {
+//	bus-supply = <&vdd_logic>;
+//	pvtm-supply = <&vdd_cpu>;
+//	status = "okay";
+//};
 
 &iep {
 	status = "okay";
 };
 
-&jpegd {
-	status = "okay";
-};
+//&jpegd {
+//	status = "okay";
+//};
 
-&jpegd_mmu {
-	status = "okay";
-};
+//&jpegd_mmu {
+//	status = "okay";
+//};
 
 &mpp_srv {
 	status = "okay";
 };
 
-&rk_rga {
-	status = "okay";
-};
+//&rk_rga {
+//	status = "okay";
+//};
 
 &rkvdec {
 	status = "okay";
 };
 
-&rkvdec_mmu {
-	status = "okay";
-};
+//&rkvdec_mmu {
+//	status = "okay";
+//};
 
-&rkvenc {
-	venc-supply = <&vdd_logic>;
-	status = "okay";
-};
+//&rkvenc {
+//	venc-supply = <&vdd_logic>;
+//	status = "okay";
+//};
 
-&rkvenc_mmu {
-	status = "okay";
-};
+//&rkvenc_mmu {
+//	status = "okay";
+//};
 
-&rknpu {
-	rknpu-supply = <&vdd_npu>;
-	status = "okay";
-};
+//&rknpu {
+//	rknpu-supply = <&vdd_npu>;
+//	status = "okay";
+//};
 
-&rknpu_mmu {
-	status = "okay";
-};
+//&rknpu_mmu {
+//	status = "okay";
+//};
 
 &vdpu {
 	status = "okay";
 };
 
-&vdpu_mmu {
-	status = "okay";
-};
+//&vdpu_mmu {
+//	status = "okay";
+//};
 
 &vepu {
 	status = "okay";
 };
 
-&vepu_mmu {
-	status = "okay";
-};
+//&vepu_mmu {
+//	status = "okay";
+//};
