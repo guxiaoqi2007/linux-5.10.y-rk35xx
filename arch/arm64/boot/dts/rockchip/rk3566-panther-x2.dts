@@ -247,7 +247,7 @@
                 regulator-init-microvolt = <900000>;
                 regulator-ramp-delay = <6001>;
                 regulator-initial-mode = <0x2>;
-                    regulator-state-mem {
+                regulator-state-mem {
                     regulator-off-in-suspend;
                 };
             };
@@ -650,7 +650,7 @@
 };
 
 &rknpu {
-    rknpu-supply = <&vdd_npu>;
+    rknpu-supply = <&vdd_gpu>;
     status = "okay";
 };
 
