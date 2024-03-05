@@ -8,6 +8,8 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/rockchip.h>
 #include <dt-bindings/input/rk-input.h>
+#include <dt-bindings/sensor-dev.h>
+#include <dt-bindings/pwm/pwm.h>
 #include "rk3566.dtsi"
 
 / {
@@ -103,6 +105,18 @@
         regulator-boot-on;
         regulator-min-microvolt = <3300000>;
         regulator-max-microvolt = <3300000>;
+        vin-supply = <&vcc5v0_sys>;
+    };   
+
+    mini_pcie_3v3: mini-pcie-3v3-regulator {
+        compatible = "regulator-fixed";
+        regulator-name = "minipcie_3v3";
+        regulator-min-microvolt = <3300000>;
+        regulator-max-microvolt = <3300000>;
+        enable-active-high;
+        regulator-always-on;
+        gpio = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
+        startup-delay-us = <5000>;
         vin-supply = <&vcc5v0_sys>;
     };
 
@@ -547,6 +561,13 @@
         vbat-supply = <&vcc3v3_sys>;
         vddio-supply = <&vcca1v8_pmu>;
     };
+};
+
+&pcie2x1 {
+    reset-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
+    disable-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_HIGH>;
+    vpcie3v3-supply = <&mini_pcie_3v3>;
+    status = "okay";
 };
 
 &uart2 {
