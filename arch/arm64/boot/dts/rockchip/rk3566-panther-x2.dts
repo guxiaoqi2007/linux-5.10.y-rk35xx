@@ -117,8 +117,7 @@
         regulator-always-on;
         enable-active-high;
         gpio = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
-        startup-delay-us = <5000>;
-        vin-supply = <&vcc3v3_sys>;
+        vin-supply = <&dc_12v>;
     };
 
     sdio_pwrseq: sdio-pwrseq {
