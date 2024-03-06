@@ -514,9 +514,11 @@
 };
 
 &sdmmc0 {
+    max-frequency = <150000000>;
     broken-cd;
     bus-width = <4>;
     cap-sd-highspeed;
+    sd-uhs-sdr104;
     disable-wp;
     pinctrl-names = "default";
     pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
