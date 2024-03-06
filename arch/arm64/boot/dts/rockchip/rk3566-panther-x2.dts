@@ -80,15 +80,6 @@
         };
     };
 
-    vbus: vbus-regulator {
-        compatible = "regulator-fixed";
-        regulator-name = "vbus";
-        regulator-always-on;
-        regulator-boot-on;
-        regulator-min-microvolt = <5000000>;
-        regulator-max-microvolt = <5000000>;
-    };
-
     dc_12v: dc-12v {
         compatible = "regulator-fixed";
         regulator-name = "dc_12v";
@@ -105,7 +96,7 @@
         regulator-boot-on;
         regulator-min-microvolt = <5000000>;
         regulator-max-microvolt = <5000000>;
-        vin-supply = <&vbus>;
+        vin-supply = <&dc_12v>;
     };
 
     vcc3v3_sys: vcc3v3-sys-regulator {
@@ -115,7 +106,7 @@
         regulator-boot-on;
         regulator-min-microvolt = <3300000>;
         regulator-max-microvolt = <3300000>;
-        vin-supply = <&vcc5v0_sys>;
+        vin-supply = <&dc_12v>;
     };
 
     mini_pcie_3v3: mini-pcie-3v3-regulator {
@@ -123,11 +114,11 @@
         regulator-name = "minipcie_3v3";
         regulator-min-microvolt = <3300000>;
         regulator-max-microvolt = <3300000>;
-        regulator-boot-on;
         regulator-always-on;
+        enable-active-high;
         gpio = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
         startup-delay-us = <5000>;
-        vin-supply = <&dc_12v>;
+        vin-supply = <&vcc3v3_sys>;
     };
 
     sdio_pwrseq: sdio-pwrseq {
