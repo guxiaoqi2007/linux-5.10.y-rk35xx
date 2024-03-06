@@ -50,7 +50,6 @@
         led_wifi: led-wifi {
             label = "led-wifi";
             default-state = "on";
-            linux,default-trigger = "rfkill0";
             gpios = <&gpio0 RK_PD6 GPIO_ACTIVE_HIGH>;
             pinctrl-names = "default";
             pinctrl-0 = <&led_wifi_enable_h>;
@@ -80,6 +79,15 @@
         };
     };
 
+    vbus: vbus-regulator {
+        compatible = "regulator-fixed";
+        regulator-name = "vbus";
+        regulator-always-on;
+        regulator-boot-on;
+        regulator-min-microvolt = <5000000>;
+        regulator-max-microvolt = <5000000>;
+    };
+
     dc_12v: dc-12v {
         compatible = "regulator-fixed";
         regulator-name = "dc_12v";
@@ -106,7 +114,7 @@
         regulator-boot-on;
         regulator-min-microvolt = <3300000>;
         regulator-max-microvolt = <3300000>;
-        vin-supply = <&dc_12v>;
+        vin-supply = <&vcc5v0_sys>;
     };
 
     vcc3v3_pcie: mini-pcie-3v3-regulator {
@@ -117,7 +125,7 @@
         regulator-always-on;
         enable-active-high;
         gpio = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
-        vin-supply = <&dc_12v>;
+        vin-supply = <&vcc5v0_sys>;
     };
 
     sdio_pwrseq: sdio-pwrseq {
@@ -186,6 +194,7 @@
     phy-handle = <&rgmii_phy1>;
     status = "okay";
 };
+
 &mdio1 {
     rgmii_phy1: ethernet-phy@0 {
         compatible = "ethernet-phy-ieee802.3-c22";
@@ -223,8 +232,6 @@
         clock-output-names = "rk808-clkout1", "rk808-clkout2";
         pinctrl-names = "default";
         pinctrl-0 = <&pmic_int_l>;
-        rockchip,system-power-controller;
-        wakeup-source;
 
         vcc1-supply = <&vcc3v3_sys>;
         vcc2-supply = <&vcc3v3_sys>;
@@ -514,11 +521,9 @@
 };
 
 &sdmmc0 {
-    max-frequency = <150000000>;
     broken-cd;
     bus-width = <4>;
     cap-sd-highspeed;
-    sd-uhs-sdr104;
     disable-wp;
     pinctrl-names = "default";
     pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
