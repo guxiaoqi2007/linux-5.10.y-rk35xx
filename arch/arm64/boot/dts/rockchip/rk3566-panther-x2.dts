@@ -104,7 +104,7 @@
         regulator-boot-on;
         regulator-min-microvolt = <5000000>;
         regulator-max-microvolt = <5000000>;
-        vin-supply = <&dc_12v>;
+        vin-supply = <&vbus>;
     };
 
     vcc3v3_sys: vcc3v3-sys-regulator {
@@ -126,7 +126,7 @@
         regulator-always-on;
         gpio = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
         startup-delay-us = <5000>;
-        vin-supply = <&vcc5v0_sys>;
+        vin-supply = <&dc_12v>;
     };
 
     sdio_pwrseq: sdio-pwrseq {
