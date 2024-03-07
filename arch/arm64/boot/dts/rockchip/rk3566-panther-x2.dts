@@ -87,7 +87,7 @@
         regulator-min-microvolt = <5000000>;
         regulator-max-microvolt = <5000000>;
     };
-
+    /*
     dc_12v: dc-12v {
         compatible = "regulator-fixed";
         regulator-name = "dc_12v";
@@ -96,6 +96,7 @@
         regulator-min-microvolt = <12000000>;
         regulator-max-microvolt = <12000000>;
     };
+    */
 
     vcc5v0_sys: vcc5v0-sys-regulator {
         compatible = "regulator-fixed";
@@ -104,7 +105,7 @@
         regulator-boot-on;
         regulator-min-microvolt = <5000000>;
         regulator-max-microvolt = <5000000>;
-        vin-supply = <&dc_12v>;
+        vin-supply = <&vbus>;
     };
 
     vcc3v3_sys: vcc3v3-sys-regulator {
@@ -116,7 +117,7 @@
         regulator-max-microvolt = <3300000>;
         vin-supply = <&vcc5v0_sys>;
     };
-
+/*
     vcc3v3_pcie: mini-pcie-3v3-regulator {
         compatible = "regulator-fixed";
         regulator-name = "vcc3v3_pcie";
@@ -127,6 +128,7 @@
         gpio = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
         vin-supply = <&vcc5v0_sys>;
     };
+*/
 
     sdio_pwrseq: sdio-pwrseq {
         status = "okay";
@@ -419,9 +421,9 @@
 
             vcc3v3_sd: SWITCH_REG2 {
                 regulator-name = "vcc3v3_sd";
-                status = "disabled";
+                //status = "disabled";
                 regulator-state-mem {
-                    regulator-on-in-suspend;
+                    regulator-off-in-suspend;
                 };
             };
 
@@ -569,13 +571,14 @@
         vddio-supply = <&vcca1v8_pmu>;
     };
 };
-
+/*
 &pcie2x1 {
     reset-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
     disable-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_HIGH>;
     vpcie3v3-supply = <&vcc3v3_pcie>;
     status = "okay";
 };
+/*
 
 &uart2 {
     status = "okay";
