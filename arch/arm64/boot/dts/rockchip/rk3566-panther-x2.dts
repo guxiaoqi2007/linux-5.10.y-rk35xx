@@ -52,7 +52,6 @@
             default-state = "on";
             gpios = <&gpio0 RK_PD6 GPIO_ACTIVE_HIGH>;
             pinctrl-names = "default";
-            pinctrl-0 = <&led_wifi_enable_h>;
             retain-state-suspended;
             status = "okay";
         };
@@ -62,7 +61,6 @@
             default-state = "on";
             gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
             pinctrl-names = "default";
-            pinctrl-0 = <&led_eth_enable_h>;
             retain-state-suspended;
             status = "okay";
         };
@@ -87,16 +85,6 @@
         regulator-min-microvolt = <5000000>;
         regulator-max-microvolt = <5000000>;
     };
-    /*
-    dc_12v: dc-12v {
-        compatible = "regulator-fixed";
-        regulator-name = "dc_12v";
-        regulator-always-on;
-        regulator-boot-on;
-        regulator-min-microvolt = <12000000>;
-        regulator-max-microvolt = <12000000>;
-    };
-    */
 
     vcc5v0_sys: vcc5v0-sys-regulator {
         compatible = "regulator-fixed";
@@ -117,18 +105,6 @@
         regulator-max-microvolt = <3300000>;
         vin-supply = <&vcc5v0_sys>;
     };
-/*
-    vcc3v3_pcie: mini-pcie-3v3-regulator {
-        compatible = "regulator-fixed";
-        regulator-name = "vcc3v3_pcie";
-        regulator-min-microvolt = <3300000>;
-        regulator-max-microvolt = <3300000>;
-        regulator-always-on;
-        enable-active-high;
-        gpio = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
-        vin-supply = <&vcc5v0_sys>;
-    };
-*/
 
     sdio_pwrseq: sdio-pwrseq {
         status = "okay";
@@ -421,7 +397,6 @@
 
             vcc3v3_sd: SWITCH_REG2 {
                 regulator-name = "vcc3v3_sd";
-                //status = "disabled";
                 regulator-state-mem {
                     regulator-off-in-suspend;
                 };
@@ -472,14 +447,6 @@
     leds {
         led_pwr_enable_h: led-pwr-enable-h {
             rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
-        };
-
-        led_wifi_enable_h: led-wifi-enable-h {
-            rockchip,pins = <0 RK_PD6 RK_FUNC_GPIO &pcfg_pull_none>;
-        };
-
-        led_eth_enable_h: led-eth-enable-h {
-            rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
         };
 
         led_status_enable_h: led-status-enable-h {
@@ -545,7 +512,6 @@
     non-removable;
     mmc-pwrseq = <&sdio_pwrseq>;
     status = "okay";
-
 };
 
 &tsadc {
@@ -571,14 +537,6 @@
         vddio-supply = <&vcca1v8_pmu>;
     };
 };
-/*
-&pcie2x1 {
-    reset-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
-    disable-gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_HIGH>;
-    vpcie3v3-supply = <&vcc3v3_pcie>;
-    status = "okay";
-};
-/*
 
 &uart2 {
     status = "okay";
