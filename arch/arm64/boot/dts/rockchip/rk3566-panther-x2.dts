@@ -397,8 +397,9 @@
 
             vcc3v3_sd: SWITCH_REG2 {
                 regulator-name = "vcc3v3_sd";
+                status = "disabled";
                 regulator-state-mem {
-                    regulator-off-in-suspend;
+                    regulator-on-in-suspend;
                 };
             };
 
@@ -447,6 +448,14 @@
     leds {
         led_pwr_enable_h: led-pwr-enable-h {
             rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
+        };
+        
+        led_wifi_enable_h: led-wifi-enable-h {
+            rockchip,pins = <0 RK_PD6 RK_FUNC_GPIO &pcfg_pull_none>;
+        };
+
+        led_eth_enable_h: led-eth-enable-h {
+            rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
         };
 
         led_status_enable_h: led-status-enable-h {
